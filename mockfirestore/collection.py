@@ -22,6 +22,10 @@ class CollectionReference:
         if name not in collection:
             set_by_path(self._data, new_path, {})
         return DocumentReference(self._data, new_path, parent=self)
+    
+    @property
+    def id(self):
+        return self._path[-1]
 
     def get(self) -> Iterable[DocumentSnapshot]:
         warnings.warn('Collection.get is deprecated, please use Collection.stream',
